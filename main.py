@@ -21,6 +21,9 @@ class Player:
         self.inventory = inventory
 
 
+
+
+
 class Weapon:
     def __init__(self, name, damage, range, cost):
         self.name = name
@@ -32,6 +35,8 @@ class Weapon:
         print(f'You bought {self.name} for {self.cost} coins!')
         user.coins -= self.cost
         user.inventory.append(self)
+
+
 
 
 
@@ -114,6 +119,9 @@ def fight():
 
 
 
+
+
+
 def menuScreen():
     print("Menu Screen")
     choices = {
@@ -139,6 +147,7 @@ def menuScreen():
 
 
 
+
 def inventory():
     print(f'''Inventory - {user.name} - ${user.coins} - [{len(user.inventory)}]
           ''')
@@ -148,6 +157,11 @@ def inventory():
         
     input("Press enter to continue...")
     menuScreen()
+
+
+
+
+
 
 def shop():
     items = { # name, damage, range, cost

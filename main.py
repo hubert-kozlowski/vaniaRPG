@@ -27,6 +27,20 @@ class Player:
         self.inventory = inventory
 
 
+class Weapon:
+    def __init__(self, name, damage, range, cost):
+        self.name = name
+        self.damage = damage
+        self.range = range
+        self.cost = cost
+
+    def buy(self):
+        print(f'You bought {self.name} for {self.cost} coins!')
+        user.coins -= self.cost
+        user.inventory.append(self.name, self.damage, self.range, self.cost)
+
+
+
 class Enemy:
     def __init__(self, name, health, damage):
         self.name = name
@@ -36,6 +50,11 @@ class Enemy:
     def spawn(self):
         print(f"A {self.name} has appeared!")
         print(f"Health: {self.health}")
+
+
+
+
+
 
 def startScreen():
     print("Welcome to the game!")
@@ -47,6 +66,7 @@ def startScreen():
     if choice == 1:
         nameInput = input("Enter your name: ")
 
+        global user # make user a global variable
         user = Player(nameInput, 100, 10, 0, [])
 
         print(f"Welcome {nameInput}!")
@@ -67,22 +87,34 @@ def startScreen():
 
 def fight():
     print('Welcome to the fight!')
+
+    name = "Moth"
     health = random.randrange(30,60,5)
-    currentEnemy = Enemy("Moth", health, 5)
+    damage = random.randrange(5,15,5)
+    reward = random.randrange(5,15,5)
+    currentEnemy = Enemy(name, health, damage)
     currentEnemy.spawn()
     
-    input("Press enter to attack!")
+    while currentEnemy.health > 0 and user.health > 0:
+        input("\n\nPress enter to attack!")
 
-    print("You attacked the enemy!")
-    currentEnemy.health -= user.damage
-    print(f"Enemy health: {currentEnemy.health}")
+        print("You attacked the enemy!")
+        currentEnemy.health -= user.damage
+        print(f"Enemy health: {currentEnemy.health}")
 
-    print("The enemy attacked you!")
-    user.health -= currentEnemy.damage
-    print(f"Your health: {user.health}")
+        print("The enemy attacked you!")
+        user.health -= currentEnemy.damage
+        print(f"Your health: {user.health}")
 
+    if currentEnemy.health <= 0:
+        print("You defeated the enemy!")
+        user.coins += reward
+        print(f"Coins: {user.coins}")
 
-
+    elif user.health <= 0:
+        print("You lost!")
+        print("Game over!")
+        startScreen()
 
 
 
@@ -107,6 +139,11 @@ def menuScreen():
     else:
         print("Invalid choice. Please try again.")
         menuScreen()
+
+
+
+
+
 
 
 

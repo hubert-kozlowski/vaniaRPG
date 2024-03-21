@@ -1,12 +1,6 @@
 import random
 
 
-def shop():
-    print("Welcome to the shop!")
-
-def inventory():
-    print("Welcome to the inventory!")
-
 def stats():
     print("Welcome to the stats!")
 
@@ -37,7 +31,7 @@ class Weapon:
     def buy(self):
         print(f'You bought {self.name} for {self.cost} coins!')
         user.coins -= self.cost
-        user.inventory.append(self.name, self.damage, self.range, self.cost)
+        user.inventory.append(self)
 
 
 
@@ -65,9 +59,10 @@ def startScreen():
     choice = int(input("Enter your choice: "))
     if choice == 1:
         nameInput = input("Enter your name: ")
+        starterCash = 100
 
         global user # make user a global variable
-        user = Player(nameInput, 100, 10, 0, [])
+        user = Player(nameInput, 100, 10, starterCash, [])
 
         print(f"Welcome {nameInput}!")
         print(f"Your stats: \nHealth: {user.health}\nDamage: {user.damage}\nCoins: {user.coins}\nInventory: {user.inventory}")
@@ -144,6 +139,39 @@ def menuScreen():
 
 
 
+def inventory():
+    print(f'''Inventory - {user.name} - ${user.coins} - [{len(user.inventory)}]
+          ''')
+    
+    for item in user.inventory:
+        print(f'{item.name} - {item.damage} - {item.range} - ${item.cost}')
+        
+    input("Press enter to continue...")
+    menuScreen()
+
+def shop():
+    items = { # name, damage, range, cost
+        1 : ["Sword", 20, 0, 50],
+        2 : ["Bow", 15, 0, 40],
+        3 : ["Potion", 0, 0, 10],
+    }
+    print("Welcome to the shop!")
+    print("Items for sale:")
+    for item, value in items.items():
+        print(f'{item}. {value[0]} - {value[1]} damage - {value[2]} range - ${value[3]}')
+
+    choice = int(input("Enter the number of the item you want to buy: "))
+    if choice in items:
+        item = items[choice]
+        if user.coins >= item[3]:
+            weapon = Weapon(item[0], item[1], item[2], item[3])
+            weapon.buy()
+        else:
+            print("You don't have enough coins!")
+    else:
+        print("Invalid choice. Please try again.")
+        shop()
+    menuScreen()
 
 
 

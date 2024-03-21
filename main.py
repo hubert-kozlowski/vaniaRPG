@@ -1,7 +1,5 @@
-#### START SCREEN !!!!!!!!!!
+import random
 
-def fight():
-    print("Welcome to the fight!")
 
 def shop():
     print("Welcome to the shop!")
@@ -29,6 +27,16 @@ class Player:
         self.inventory = inventory
 
 
+class Enemy:
+    def __init__(self, name, health, damage):
+        self.name = name
+        self.health = health
+        self.damage = damage
+
+    def spawn(self):
+        print(f"A {self.name} has appeared!")
+        print(f"Health: {self.health}")
+
 def startScreen():
     print("Welcome to the game!")
     print(''' 
@@ -38,8 +46,10 @@ def startScreen():
     choice = int(input("Enter your choice: "))
     if choice == 1:
         nameInput = input("Enter your name: ")
-        print(f"Welcome {nameInput}!")
+
         user = Player(nameInput, 100, 10, 0, [])
+
+        print(f"Welcome {nameInput}!")
         print(f"Your stats: \nHealth: {user.health}\nDamage: {user.damage}\nCoins: {user.coins}\nInventory: {user.inventory}")
 
         menuScreen()
@@ -49,6 +59,31 @@ def startScreen():
     else:
         print("choose valid number\n\n")
         startScreen()
+
+
+
+
+
+
+def fight():
+    print('Welcome to the fight!')
+    health = random.randrange(30,60,5)
+    currentEnemy = Enemy("Moth", health, 5)
+    currentEnemy.spawn()
+    
+    input("Press enter to attack!")
+
+    print("You attacked the enemy!")
+    currentEnemy.health -= user.damage
+    print(f"Enemy health: {currentEnemy.health}")
+
+    print("The enemy attacked you!")
+    user.health -= currentEnemy.damage
+    print(f"Your health: {user.health}")
+
+
+
+
 
 
 
@@ -74,11 +109,7 @@ def menuScreen():
         menuScreen()
 
 
-startScreen()
 
 
-# 1. Fight - Fight the ugly birds
-# 2. Shop - Buy weapons and potions
-# 3. Inventory - Check your inventory
-# 4. Stats - Check your stats
-# 5. Exit - Exit the game
+
+startScreen() 

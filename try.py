@@ -12,5 +12,6 @@ except ZeroDivisionError:
     print("Cannot divide by zero.")
 except Exception as e:
     print("An error occurred. ", e)
-
+finally:
+    print("This will always run.")
 

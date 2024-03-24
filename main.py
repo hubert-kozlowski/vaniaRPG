@@ -39,7 +39,6 @@ class Weapon:
 
 
 
-
 class Enemy:
     def __init__(self, name, health, damage):
         self.name = name
@@ -65,9 +64,11 @@ def startScreen():
     if choice == 1:
         nameInput = input("Enter your name: ")
         starterCash = 100
+        damage = random.randint(5,10)
 
         global user # make user a global variable
-        user = Player(nameInput, 100, 10, starterCash, [])
+        user = Player(nameInput, 100, damage, starterCash, [])
+                    # name, health, damage, coins, inventory
 
         print(f"Welcome {nameInput}!")
         print(f"Your stats: \nHealth: {user.health}\nDamage: {user.damage}\nCoins: {user.coins}\nInventory: {user.inventory}")
@@ -165,18 +166,21 @@ def inventory():
 
 def shop():
     items = { # name, damage, range, cost
-        1 : ["Sword", 20, 0, 50],
-        2 : ["Bow", 15, 0, 40],
+        1 : ["Sword", random.randint(15,20), 0, 50],
+        2 : ["Bow", random.randint(10,15), 0, 40],
         3 : ["Potion", 0, 0, 10],
     }
     print("Welcome to the shop!")
     print("Items for sale:")
     for item, value in items.items():
         print(f'{item}. {value[0]} - {value[1]} damage - {value[2]} range - ${value[3]}')
+    print("4. Exit Shop")
 
-    choice = int(input("Enter the number of the item you want to buy: "))
-    if choice in items:
-        item = items[choice]
+    choice = input("Make your selection: ")
+    if choice == "":
+        menuScreen()
+    elif int(choice) in items:
+        item = items[int(choice)]
         if user.coins >= item[3]:
             weapon = Weapon(item[0], item[1], item[2], item[3])
             weapon.buy()

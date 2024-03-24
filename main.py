@@ -3,6 +3,15 @@ import random
 
 def stats():
     print("Welcome to the stats!")
+    choice = input("Press Enter to exit stats")
+    if choice == "":
+        menuScreen()
+
+
+def leaveGame():
+    print("Goodbye!")
+    # saveStats() (placeholder)
+    exit()
 
 
 #### Player --> Stats (health, damage, speed, etc.) <-- attack = rizz?
@@ -130,7 +139,7 @@ def menuScreen():
         2 : ["Shop", "Buy weapons and potions", shop],
         3 : ["Inventory", "Check your inventory", inventory],
         4 : ["Stats", "Check your stats", stats],
-        5 : ["Exit", "Exit the game" ],
+        5 : ["Exit", "Exit the game", leaveGame],
     }
     for choice, value in choices.items():
         print(f'{choice}. {value[0]} - "{value[1]}"')
@@ -174,7 +183,7 @@ def shop():
     print("Items for sale:")
     for item, value in items.items():
         print(f'{item}. {value[0]} - {value[1]} damage - {value[2]} range - ${value[3]}')
-    print("4. Exit Shop")
+    print("Press Enter to exit shop")
 
     choice = input("Make your selection: ")
     if choice == "":

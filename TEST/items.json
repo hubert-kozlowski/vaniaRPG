@@ -1,0 +1,26 @@
+{
+    "items": [
+      {
+        "id": 1,
+        "name": "Sword",
+        "damage": [15, 20],
+        "range": 0,
+        "cost": 50
+      },
+      {
+        "id": 2,
+        "name": "Bow",
+        "damage": [10, 15],
+        "range": 0,
+        "cost": 40
+      },
+      {
+        "id": 3,
+        "name": "Potion",
+        "damage": 0,
+        "range": 0,
+        "cost": 10
+      }
+    ]
+  }
+  

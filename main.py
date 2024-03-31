@@ -4,7 +4,7 @@ import random
 import sys
 
 from functions.LeaveGame import leaveGame
-from functions.screens import (Fight, Inventory, Shop, Stats, menuScreen,
+from functions.screens import (Battle, Inventory, Shop, Stats, menuScreen,
                                startScreen)
 from functions.screens.startScreen import startScreen
 

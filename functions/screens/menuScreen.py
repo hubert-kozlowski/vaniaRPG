@@ -1,11 +1,13 @@
+from screens import Battle
+
 from functions.LeaveGame import leaveGame
 
 
 def menuScreen():
-    from functions.screens import Fight, Inventory, Shop, Stats, startScreen
+    from functions.screens import Inventory, Shop, Stats, startScreen
     print("Menu Screen")
     choices = {
-        1 : ["Fight", "Fight the ugly birds", Fight],
+        1 : ["Fight", "Fight the ugly birds", Battle],
         2 : ["Shop", "Buy weapons and potions", Shop],
         3 : ["Inventory", "Check your inventory", Inventory],
         4 : ["Stats", "Check your stats", Stats],

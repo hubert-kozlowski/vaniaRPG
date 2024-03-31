@@ -6,7 +6,7 @@ class Enemy:
         self.reward = reward
 
     def attack(self, player): # player is an instance of the Player class
-        print("The enemy attacked you!")
+        print(f"{self.name} attacked you!")
         player.health -= self.damage
         print(f"Your health: {player.health}")
 
@@ -14,5 +14,5 @@ class Enemy:
         return self.health > 0
 
     def spawn(self): # prints the enemy's name and health
-        print(f"A {self.name} has appeared!")
+        print(f"A wild {self.name} appears!")
         print(f"Health: {self.health}")

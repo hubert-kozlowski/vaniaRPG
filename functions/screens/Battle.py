@@ -7,11 +7,11 @@ from functions.screens.startScreen import get_user
 
 
 class Battle:
-    def __init__(self, player, enemies): 
-        self.player = player # player is an instance of the Player class
-        self.enemies = enemies # enemies is a list of instances of the Enemy class
+    def __init__(self, player, enemies):
+        self.player = player
+        self.enemies = enemies
 
-    def start(self): # starts the battle
+    def start(self):
         print('Welcome to the fight!')
 
         for enemy in self.enemies:
@@ -34,12 +34,3 @@ class Battle:
         else:
             print("You lost!")
             print("Game over!")
-
-enemies = [
-    Enemy("Moth", random.randrange(30, 60, 5), random.randrange(5, 15, 5), random.randrange(5, 15, 5)),
-    Enemy("Spider", random.randrange(40, 70, 5), random.randrange(5, 15, 5), random.randrange(5, 15, 5)),
-    # Add more enemies as needed
-]
-
-battle = Battle(Player, enemies)
-battle.start()

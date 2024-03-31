@@ -1,6 +1,7 @@
 from functions.screens.menuScreen import menuScreen
-from functions.screens.startScreen import get_user
+from functions.screens.startScreen import get_user, startScreen
 
+user = get_user()
 
 def inventory():
     print(f'''Inventory - {user.name} - ${user.coins} - [{len(user.inventory)}]

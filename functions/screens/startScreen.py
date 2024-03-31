@@ -2,6 +2,8 @@ import random
 
 from classes.Player import Player
 
+# Define user at the top level
+user = None
 
 def startScreen():
     from functions.screens.menuScreen import menuScreen

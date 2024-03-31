@@ -4,7 +4,6 @@ from classes.Enemy import Enemy
 from classes.Player import Player
 from functions.LeaveGame import leaveGame
 from functions.screens import Battle
-from functions.screens.Battle import Battle  # Import the Battle class
 from functions.screens.startScreen import get_user  # Import get_user function
 
 
@@ -12,25 +11,25 @@ def menuScreen():
     from functions.screens import Inventory, Shop, Stats, startScreen
     print("Menu Screen")
     choices = {
-        1: ["Fight", "Fight the ugly birds", Battle],  # Pass the Battle class itself
-        2: ["Shop", "Buy weapons and potions", Shop],
-        3: ["Inventory", "Check your inventory", Inventory],
-        4: ["Stats", "Check your stats", Stats],
-        5: ["Exit", "Exit the game", leaveGame],
+        1 : ["Fight", "Fight the ugly birds", Battle],
+        2 : ["Shop", "Buy weapons and potions", Shop],
+        3 : ["Inventory", "Check your inventory", Inventory],
+        4 : ["Stats", "Check your stats", Stats],
+        5 : ["Exit", "Exit the game", leaveGame],
     }
     for choice, value in choices.items():
         print(f'{choice}. {value[0]} - "{value[1]}"')
     selection = int(input("\nEnter your choice: ")) 
-
+    
     if selection == 1:  # If the user chooses to fight
         user = get_user()  # Get the user object
         player = user
         enemies = [
             Enemy("Moth", random.randrange(30, 60, 5), random.randrange(5, 15, 5), random.randrange(5, 15, 5)),
             Enemy("Spider", random.randrange(40, 70, 5), random.randrange(5, 15, 5), random.randrange(5, 15, 5)),
-            # Add more enemies as needed
+            # ofc more can be added
         ]
-        battle = value[2](player, enemies)  # Create a Battle object using the Battle class
+        battle = Battle(player, enemies)
         battle.start()
     elif selection in choices:
         action = choices[selection]
